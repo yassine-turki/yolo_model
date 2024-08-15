@@ -1,0 +1,6 @@
+{train: /users/eleves-a/2021/yassine.turki/Ikomia/Plugins/Python/train_yolo_v9/dataset/images/train,
+  val: /users/eleves-a/2021/yassine.turki/Ikomia/Plugins/Python/train_yolo_v9/dataset/images/val,
+  nc: 16, names: [Damage, Front-Windscreen-Damage, Headlight-Damage, Rear-windscreen-Damage,
+    RunningBoard-Dent, Sidemirror-Damage, Signlight-Damage, Taillight-Damage, bonnet-dent,
+    doorouter-dent, fender-dent, front-bumper-dent, pillar-dent, quaterpanel-dent,
+    rear-bumper-dent, roof-dent]}

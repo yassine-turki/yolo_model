@@ -1,0 +1,309 @@
+weights: /users/eleves-a/2021/yassine.turki/Ikomia/Plugins/Python/train_yolo_v9/models/yolov9-c.pt
+cfg: /users/eleves-a/2021/yassine.turki/Ikomia/Plugins/Python/train_yolo_v9/yolov9/models/detect/yolov9-c.yaml
+data: /users/eleves-a/2021/yassine.turki/Ikomia/Plugins/Python/train_yolo_v9/dataset/dataset.yaml
+hyp:
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.1
+  box: 7.5
+  cls: 0.5
+  cls_pw: 1.0
+  dfl: 1.5
+  obj_pw: 1.0
+  iou_t: 0.2
+  anchor_t: 5.0
+  fl_gamma: 0.0
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.9
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.15
+  copy_paste: 0.3
+epochs: 50
+batch_size: 4
+imgsz: 640
+rect: false
+resume: false
+nosave: false
+noval: false
+noautoanchor: false
+noplots: false
+evolve: null
+bucket: ''
+cache: null
+image_weights: false
+device: ''
+multi_scale: false
+single_cls: false
+optimizer: SGD
+sync_bn: false
+workers: 8
+project: /users/eleves-a/2021/yassine.turki/cardamage
+name: 15-08-2024T10h01m42s
+exist_ok: false
+quad: false
+cos_lr: false
+flat_cos_lr: false
+fixed_lr: false
+label_smoothing: 0.0
+patience: 100
+freeze:
+- 0
+save_period: -1
+seed: 0
+local_rank: -1
+min_items: 0
+close_mosaic: 0
+entity: null
+upload_dataset: false
+bbox_interval: -1
+artifact_alias: latest
+nc: 80
+depth_multiple: 1.0
+width_multiple: 1.0
+anchors: 3
+backbone:
+- - -1
+  - 1
+  - Silence
+  - []
+- - -1
+  - 1
+  - Conv
+  - - 64
+    - 3
+    - 2
+- - -1
+  - 1
+  - Conv
+  - - 128
+    - 3
+    - 2
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 256
+    - 128
+    - 64
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 256
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 256
+    - 128
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 512
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 512
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+head:
+- - -1
+  - 1
+  - SPPELAN
+  - - 512
+    - 256
+- - -1
+  - 1
+  - nn.Upsample
+  - - None
+    - 2
+    - nearest
+- - - -1
+    - 7
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - -1
+  - 1
+  - nn.Upsample
+  - - None
+    - 2
+    - nearest
+- - - -1
+    - 5
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 256
+    - 256
+    - 128
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 256
+- - - -1
+    - 13
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 512
+- - - -1
+    - 10
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - 5
+  - 1
+  - CBLinear
+  - - - 256
+- - 7
+  - 1
+  - CBLinear
+  - - - 256
+      - 512
+- - 9
+  - 1
+  - CBLinear
+  - - - 256
+      - 512
+      - 512
+- - 0
+  - 1
+  - Conv
+  - - 64
+    - 3
+    - 2
+- - -1
+  - 1
+  - Conv
+  - - 128
+    - 3
+    - 2
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 256
+    - 128
+    - 64
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 256
+- - - 23
+    - 24
+    - 25
+    - -1
+  - 1
+  - CBFuse
+  - - - 0
+      - 0
+      - 0
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 256
+    - 128
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 512
+- - - 24
+    - 25
+    - -1
+  - 1
+  - CBFuse
+  - - - 1
+      - 1
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - -1
+  - 1
+  - ADown
+  - - 512
+- - - 25
+    - -1
+  - 1
+  - CBFuse
+  - - - 2
+- - -1
+  - 1
+  - RepNCSPELAN4
+  - - 512
+    - 512
+    - 256
+    - 1
+- - - 31
+    - 34
+    - 37
+    - 16
+    - 19
+    - 22
+  - 1
+  - DualDDetect
+  - - nc
+img_size:
+- 640
+- 640
+tb_dir: /users/eleves-a/2021/yassine.turki/Ikomia/Tensorboard/15-08-2024T10h01m42s
+stop_train: false
+save_dir: /users/eleves-a/2021/yassine.turki/cardamage/15-08-2024T10h01m42s
